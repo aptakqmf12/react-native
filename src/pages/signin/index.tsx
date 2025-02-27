@@ -13,6 +13,9 @@ export default function SignInScreen() {
   const passwordRef = useRef<TextInput | null>(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const isValid = email && password;
+
   return (
     <KeyboardAvoidingView behavior={'position'} style={styles.container}>
       <View style={styles.inputWrapper}>
@@ -39,14 +42,12 @@ export default function SignInScreen() {
         />
       </View>
 
-      <Pressable>
-        <Text
-          style={StyleSheet.compose(
-            styles.loginButton,
-            styles.loginButtonActive,
-          )}>
-          로그인
-        </Text>
+      <Pressable
+        style={StyleSheet.compose(
+          styles.loginButton,
+          styles.loginButtonActive,
+        )}>
+        <Text style={styles.loginButtonText}>로그인</Text>
       </Pressable>
     </KeyboardAvoidingView>
   );
@@ -73,5 +74,9 @@ const styles = StyleSheet.create({
   },
   loginButtonActive: {
     backgroundColor: 'blue',
+  },
+  loginButtonText: {
+    color: 'white',
+    fontSize: 16,
   },
 });
