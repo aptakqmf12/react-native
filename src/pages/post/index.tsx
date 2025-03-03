@@ -11,15 +11,17 @@ import {ParamListBase} from '@react-navigation/native';
 
 type DetailsScreenProps = NativeStackScreenProps<ParamListBase, 'Post'>;
 
-export default function PostScreen({navigation}: DetailsScreenProps) {
+export default function PostScreen({navigation, route}: DetailsScreenProps) {
   const onClick = useCallback(() => {
     navigation.navigate('Home');
   }, [navigation]);
 
+  const {id} = route.params;
+
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
       <TouchableHighlight onPress={onClick}>
-        <Text>ghi</Text>
+        <Text>포스트 상세 id : {id}</Text>
       </TouchableHighlight>
 
       <TouchableWithoutFeedback onPress={() => {}}>

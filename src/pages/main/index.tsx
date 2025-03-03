@@ -1,6 +1,5 @@
-import {useCallback} from 'react';
-import {FlatList, Text, TouchableHighlight, View} from 'react-native';
 import * as React from 'react';
+import {FlatList, View} from 'react-native';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {LoggedInStackParamList} from '../../../App.tsx';
 import PostItem, {PostItemProps} from '../../components/PostItem.tsx';
@@ -8,10 +7,6 @@ import PostItem, {PostItemProps} from '../../components/PostItem.tsx';
 type HomeScreenProps = NativeStackScreenProps<LoggedInStackParamList, 'Home'>;
 
 export default function HomeScreen({navigation}: HomeScreenProps) {
-  const onClickPost = useCallback(() => {
-    navigation.navigate('Post');
-  }, [navigation]);
-
   const postList: PostItemProps[] = [
     {
       id: 1,
@@ -46,15 +41,11 @@ export default function HomeScreen({navigation}: HomeScreenProps) {
   ];
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1, padding: 8}}>
       <FlatList
         data={postList}
         renderItem={data => <PostItem {...data.item} />}
       />
-
-      <TouchableHighlight onPress={onClickPost}>
-        <Text>여기는 홈입니다</Text>
-      </TouchableHighlight>
     </View>
   );
 }

@@ -9,7 +9,7 @@ import SignUpScreen from './src/pages/signup';
 
 export type LoggedInStackParamList = {
   Home: undefined;
-  Post: undefined;
+  Post: {id: number};
 };
 
 export type NotLoggedInStackParamList = {
@@ -21,7 +21,7 @@ const Tab = createBottomTabNavigator<LoggedInStackParamList>();
 const Stack = createNativeStackNavigator<NotLoggedInStackParamList>();
 
 function App() {
-  const isLogin = false;
+  const isLogin = true;
   return (
     <NavigationContainer>
       {isLogin ? (
