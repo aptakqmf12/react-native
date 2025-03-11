@@ -7,14 +7,20 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 import React, {useRef, useState} from 'react';
+import {useUserStore} from '../../store/userStore.ts';
 
 export default function SignInScreen() {
+  const {setIsLogin} = useUserStore();
   const emailRef = useRef<TextInput | null>(null);
   const passwordRef = useRef<TextInput | null>(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const isValid = email && password;
+
+  const handleLogin = () => {
+    setIsLogin(true);
+  };
 
   return (
     <KeyboardAvoidingView behavior={'position'} style={styles.container}>
@@ -43,6 +49,7 @@ export default function SignInScreen() {
       </View>
 
       <Pressable
+        onPress={handleLogin}
         style={StyleSheet.compose(
           styles.loginButton,
           styles.loginButtonActive,
@@ -61,7 +68,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: 'gray',
-
+    gap: 4,
     padding: 8,
     borderRadius: 4,
   },

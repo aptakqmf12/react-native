@@ -2,14 +2,15 @@ import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import PostScreen from './src/pages/post';
-import HomeScreen from './src/pages/main';
 import SignInScreen from './src/pages/signin';
 import SignUpScreen from './src/pages/signup';
+import PostScreen from './src/pages/post';
+import HomeScreen from './src/pages/main';
+import {useUserStore} from './src/store/userStore.ts';
 
 export type LoggedInStackParamList = {
   Home: undefined;
-  Post: undefined;
+  Post: {postId: number};
 };
 
 export type NotLoggedInStackParamList = {
@@ -21,7 +22,7 @@ const Tab = createBottomTabNavigator<LoggedInStackParamList>();
 const Stack = createNativeStackNavigator<NotLoggedInStackParamList>();
 
 function App() {
-  const isLogin = false;
+  const {isLogin} = useUserStore();
   return (
     <NavigationContainer>
       {isLogin ? (
@@ -39,7 +40,7 @@ function App() {
           />
         </Tab.Navigator>
       ) : (
-        <Stack.Navigator initialRouteName="SignUp">
+        <Stack.Navigator initialRouteName="SignIn">
           <Stack.Screen
             name="SignIn"
             component={SignInScreen}

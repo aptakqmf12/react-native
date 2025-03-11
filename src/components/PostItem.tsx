@@ -1,6 +1,10 @@
-import {Image, Text, View} from 'react-native';
+import {Image, Pressable, Text, View} from 'react-native';
 import * as React from 'react';
 import dayjs from 'dayjs';
+import {useCallback} from 'react';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {LoggedInStackParamList} from '../../App.tsx';
 
 export interface PostItemProps {
   id: number;
@@ -22,8 +26,17 @@ export default function PostItem({
   profile,
 }: PostItemProps) {
   const date = dayjs(publishedAt);
+
+  const navigation =
+    useNavigation<NativeStackNavigationProp<LoggedInStackParamList>>();
+
+  const onClickPost = useCallback(() => {
+    navigation.navigate('Post', {postId: id});
+  }, [navigation]);
+
   return (
-    <View
+    <Pressable
+      onPress={onClickPost}
       style={{
         padding: 4,
         gap: 8,
@@ -47,6 +60,6 @@ export default function PostItem({
           {price.toLocaleString()}P
         </Text>
       </View>
-    </View>
+    </Pressable>
   );
 }

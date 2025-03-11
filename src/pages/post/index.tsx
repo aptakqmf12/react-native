@@ -1,5 +1,6 @@
 import {useCallback} from 'react';
 import {
+  StatusBar,
   Text,
   TouchableHighlight,
   TouchableWithoutFeedback,
@@ -7,19 +8,25 @@ import {
 } from 'react-native';
 import * as React from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {ParamListBase} from '@react-navigation/native';
+import {LoggedInStackParamList} from '../../../App.tsx';
 
-type DetailsScreenProps = NativeStackScreenProps<ParamListBase, 'Post'>;
+type DetailsScreenProps = NativeStackScreenProps<
+  LoggedInStackParamList,
+  'Post'
+>;
 
-export default function PostScreen({navigation}: DetailsScreenProps) {
+export default function PostScreen({navigation, route}: DetailsScreenProps) {
   const onClick = useCallback(() => {
     navigation.navigate('Home');
   }, [navigation]);
 
+  const {postId} = route.params;
+
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+      <StatusBar />
       <TouchableHighlight onPress={onClick}>
-        <Text>ghi</Text>
+        <Text>postId? : {postId}</Text>
       </TouchableHighlight>
 
       <TouchableWithoutFeedback onPress={() => {}}>
