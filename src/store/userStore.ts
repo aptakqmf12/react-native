@@ -1,5 +1,6 @@
 import {create} from 'zustand';
-import {devtools, persist} from 'zustand/middleware';
+import {devtools, persist, createJSONStorage} from 'zustand/middleware';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 interface UserStore {
   isLogin: boolean;
@@ -15,6 +16,7 @@ export const useUserStore = create<UserStore>()(
       }),
       {
         name: 'user store',
+        storage: createJSONStorage(() => AsyncStorage),
       },
     ),
   ),
