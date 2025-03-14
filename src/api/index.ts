@@ -8,12 +8,8 @@ export const apiClient = axios.create({
 });
 
 apiClient.interceptors.request.use(function (req) {
-  console.log('req', req);
-
   return req;
 });
 apiClient.interceptors.response.use(function (res) {
-  console.log('res', res);
-
   return res;
 });

@@ -7,10 +7,12 @@ import SignUpScreen from './src/pages/signup';
 import PostScreen from './src/pages/post';
 import HomeScreen from './src/pages/main';
 import {useUserStore} from './src/store/userStore.ts';
+import ScrollViewScreen from './src/pages/scrollView';
 
 export type LoggedInStackParamList = {
   Home: undefined;
   Post: {postId: number};
+  ScrollView: undefined;
 };
 
 export type NotLoggedInStackParamList = {
@@ -32,11 +34,21 @@ function App() {
             component={HomeScreen}
             options={{title: '홈', headerShown: true}}
           />
-
           <Tab.Screen
             name="Post"
             component={PostScreen}
-            options={{title: '포스트 상세'}}
+            options={{
+              title: '포스트 상세',
+              headerStyle: {
+                backgroundColor: '#29b6f6',
+              },
+              headerTintColor: '#ffffff',
+            }}
+          />
+          <Tab.Screen
+            name="ScrollView"
+            component={ScrollViewScreen}
+            options={{title: '스크롤뷰', headerShown: true}}
           />
         </Tab.Navigator>
       ) : (
