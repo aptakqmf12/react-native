@@ -7,12 +7,21 @@ import {
   KeyboardAvoidingView,
 } from 'react-native';
 import React, {useRef, useState} from 'react';
+import {useUserStore} from '../../store/userStore.ts';
 
 export default function SignInScreen() {
+  const {setIsLogin} = useUserStore();
   const emailRef = useRef<TextInput | null>(null);
   const passwordRef = useRef<TextInput | null>(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const isValid = email && password;
+
+  const handleLogin = () => {
+    setIsLogin(true);
+  };
+
   return (
     <KeyboardAvoidingView behavior={'position'} style={styles.container}>
       <View style={styles.inputWrapper}>
@@ -39,14 +48,13 @@ export default function SignInScreen() {
         />
       </View>
 
-      <Pressable>
-        <Text
-          style={StyleSheet.compose(
-            styles.loginButton,
-            styles.loginButtonActive,
-          )}>
-          로그인
-        </Text>
+      <Pressable
+        onPress={handleLogin}
+        style={StyleSheet.compose(
+          styles.loginButton,
+          styles.loginButtonActive,
+        )}>
+        <Text style={styles.loginButtonText}>로그인</Text>
       </Pressable>
     </KeyboardAvoidingView>
   );
@@ -60,7 +68,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     borderWidth: StyleSheet.hairlineWidth,
     borderColor: 'gray',
-
+    gap: 4,
     padding: 8,
     borderRadius: 4,
   },
@@ -73,5 +81,9 @@ const styles = StyleSheet.create({
   },
   loginButtonActive: {
     backgroundColor: 'blue',
+  },
+  loginButtonText: {
+    color: 'white',
+    fontSize: 16,
   },
 });

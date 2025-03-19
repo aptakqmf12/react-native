@@ -15,7 +15,11 @@ export default function DisMissKeyboardView({
 }: DisMissKeyboardViewProps) {
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-      <KeyboardAwareScrollView style={props.style} {...props}>
+      <KeyboardAwareScrollView
+        {...props}
+        style={props.style}
+        // behavior={Platform.OS === 'android' ? 'position' : 'padding'}
+      >
         {children}
       </KeyboardAwareScrollView>
     </TouchableWithoutFeedback>

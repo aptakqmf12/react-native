@@ -13,6 +13,9 @@ export default function SignUpScreen() {
   const passwordRef = useRef<TextInput | null>(null);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const isValid = email && password;
+
   return (
     <KeyboardAvoidingView style={styles.container}>
       <View style={styles.inputWrapper}>
@@ -39,14 +42,13 @@ export default function SignUpScreen() {
         />
       </View>
 
-      <Pressable>
-        <Text
-          style={StyleSheet.compose(
-            styles.loginButton,
-            styles.loginButtonActive,
-          )}>
-          회원가입
-        </Text>
+      <Pressable
+        style={
+          isValid
+            ? StyleSheet.compose(styles.loginButton, styles.loginButtonActive)
+            : styles.loginButton
+        }>
+        <Text style={styles.loginButtonText}>회원가입</Text>
       </Pressable>
     </KeyboardAvoidingView>
   );
@@ -72,5 +74,9 @@ const styles = StyleSheet.create({
   },
   loginButtonActive: {
     backgroundColor: 'blue',
+  },
+  loginButtonText: {
+    color: 'white',
+    fontSize: 16,
   },
 });
