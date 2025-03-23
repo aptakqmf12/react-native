@@ -20,6 +20,7 @@
     "react-native": "0.77.1",
     "react-native-config": "^1.5.5",
     "react-native-keyboard-aware-scrollview": "^2.1.0",
+    "react-native-nmap": "https://github.com/ZeroCho/react-native-naver-map",
     "react-native-safe-area-context": "^5.2.0",
     "react-native-screens": "^4.6.0",
     "zustand": "^5.0.3"

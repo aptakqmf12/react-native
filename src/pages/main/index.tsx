@@ -8,9 +8,10 @@ export default function HomeScreen() {
   const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
+    console.log('??');
     const getPostList = async () => {
       const res = await apiClient.get('/posts');
-
+      console.log('res', res.data);
       if (res.status === 200) {
         setPosts(res.data);
       }

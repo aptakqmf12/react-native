@@ -8,11 +8,13 @@ import PostScreen from './src/pages/post';
 import HomeScreen from './src/pages/main';
 import {useUserStore} from './src/store/userStore.ts';
 import ScrollViewScreen from './src/pages/scrollView';
+import MapViewScreen from './src/pages/map';
 
 export type LoggedInStackParamList = {
   Home: undefined;
   Post: {postId: number};
   ScrollView: undefined;
+  MapView: undefined;
 };
 
 export type NotLoggedInStackParamList = {
@@ -49,6 +51,12 @@ function App() {
             name="ScrollView"
             component={ScrollViewScreen}
             options={{title: '스크롤뷰', headerShown: true}}
+          />
+
+          <Tab.Screen
+            name="MapView"
+            component={MapViewScreen}
+            options={{title: '지도', headerShown: true}}
           />
         </Tab.Navigator>
       ) : (

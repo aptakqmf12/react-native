@@ -2,7 +2,7 @@ import axios from 'axios';
 import Config from 'react-native-config';
 
 export const apiClient = axios.create({
-  baseURL: Config.API_URL,
+  baseURL: 'https://jsonplaceholder.typicode.com',
   timeout: 3000,
   withCredentials: true,
 });

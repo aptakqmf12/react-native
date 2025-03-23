@@ -2,10 +2,7 @@ import {useCallback, useEffect, useState} from 'react';
 import {
   ActivityIndicator,
   Pressable,
-  StatusBar,
   Text,
-  TouchableHighlight,
-  TouchableWithoutFeedback,
   StyleSheet,
   View,
 } from 'react-native';
